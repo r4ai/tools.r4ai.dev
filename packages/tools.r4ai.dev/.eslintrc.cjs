@@ -1,12 +1,16 @@
 // @ts-check
-const { defineConfig } = require("eslint-define-config");
+const { defineConfig } = require("eslint-define-config")
 
 module.exports = defineConfig({
   extends: ["next/core-web-vitals", "prettier"],
+  ignorePatterns: ["node_modules", "dist"],
   overrides: [
     {
-      files: "*.cjs",
-      extends: "next",
+      files: "*.js",
+      parser: "espree",
+      parserOptions: {
+        ecmaVersion: 2020,
+      },
     },
   ],
-});
+})
