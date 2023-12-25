@@ -1,7 +1,6 @@
 {
   "name": "root",
   "module": ".",
-  "type": "module",
   "devDependencies": {
     "typescript": "^5.0.0"
   },

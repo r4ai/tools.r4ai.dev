@@ -1,12 +1,12 @@
-"use client";
+"use client"
 
-import type { ReactNode } from "react";
-import { NextUIProvider } from "@nextui-org/react";
+import type { ReactNode } from "react"
+import { NextUIProvider } from "@nextui-org/react"
 
 type ProvidersProps = {
-  children: ReactNode;
-};
+  children: ReactNode
+}
 
 export const Providers = ({ children }: ProvidersProps) => {
-  return <NextUIProvider>{children}</NextUIProvider>;
-};
+  return <NextUIProvider>{children}</NextUIProvider>
+}

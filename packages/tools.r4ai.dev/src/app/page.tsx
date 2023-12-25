@@ -1,4 +1,4 @@
-import { Button } from "@nextui-org/button";
+import { Button } from "@nextui-org/button"
 
 export default function Home() {
   return (
@@ -6,5 +6,5 @@ export default function Home() {
       <h1 className="text-3xl">Hi, NextUI</h1>
       <Button>Clicke Me</Button>
     </main>
-  );
+  )
 }

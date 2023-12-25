@@ -7,7 +7,9 @@
     "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "format": "prettier --ignore-path .gitignore --write './**/*.{js,jsx,ts,tsx,json,yaml,yml,md,mdx,html}'"
   },
   "dependencies": {
     "@nextui-org/react": "^2.2.9",
@@ -23,9 +25,11 @@
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-define-config": "^2.0.0",
     "postcss": "^8",
     "postcss-load-config": "^5.0.2",
+    "prettier": "^3.1.1",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
   }
