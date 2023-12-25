@@ -1,11 +1,9 @@
 {
-  "name": "tools.r4ai.dev",
+  "name": "root",
   "module": ".",
   "type": "module",
   "devDependencies": {
-    "bun-types": "latest"
-  },
-  "peerDependencies": {
     "typescript": "^5.0.0"
-  }
+  },
+  "packageManager": "pnpm@8.12.1"
 }
