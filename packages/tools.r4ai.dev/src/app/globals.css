@@ -6,6 +6,6 @@
   html,
   body,
   body > div {
-    height: 100%;
+    @apply h-full;
   }
 }

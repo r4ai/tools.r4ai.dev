@@ -51,6 +51,7 @@ const Diff: FC<pageProps> = (props) => {
         </Button>
       </div>
       <Editor
+        className="flex-1"
         theme={editorTheme}
         defaultLanguage="json"
         options={{

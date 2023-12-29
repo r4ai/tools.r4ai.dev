@@ -1,3 +1,5 @@
+"use client"
+
 import { OnMount } from "@monaco-editor/react"
 import { editor } from "monaco-editor"
 import { useTheme } from "next-themes"

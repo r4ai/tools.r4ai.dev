@@ -1,10 +1,33 @@
-import { Button } from "@nextui-org/button"
+import { LinkCard } from "@/components/LinkCard"
 
 export default function Home() {
   return (
     <main>
-      <h1 className="text-3xl">Hi, NextUI</h1>
-      <Button>Clicke Me</Button>
+      <section className="flex flex-col gap-6 pt-6">
+        <h2 className="text-3xl font-black mx-auto">Tools</h2>
+        <div className="mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <LinkCard
+            href="/format"
+            title="Format it!"
+            description={
+              <div>
+                <p>Format your code text.</p>
+                <p>Powered by Monaco Editor.</p>
+              </div>
+            }
+          />
+          <LinkCard
+            href="/diff"
+            title="Diff it!"
+            description={
+              <div>
+                <p>Compare two code texts side by side.</p>
+                <p>Powered by Monaco Editor.</p>
+              </div>
+            }
+          />
+        </div>
+      </section>
     </main>
   )
 }

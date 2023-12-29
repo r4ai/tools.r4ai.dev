@@ -19,7 +19,7 @@ const Diff: FC<pageProps> = (props) => {
       <div className="mx-auto">
         <h1 className="text-3xl font-black">Diff it!</h1>
       </div>
-      <div className="mx-auto">
+      <div className="mx-auto flex items-center gap-8">
         <Autocomplete
           label="Select a language"
           className="max-w-xs"
