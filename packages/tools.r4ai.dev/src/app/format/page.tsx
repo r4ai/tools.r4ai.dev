@@ -1,7 +1,7 @@
 "use client"
 
-import { DiffEditor } from "@monaco-editor/react"
-import { Autocomplete, AutocompleteItem } from "@nextui-org/react"
+import Editor from "@monaco-editor/react"
+import { Autocomplete, AutocompleteItem, Button } from "@nextui-org/react"
 import { languages } from "monaco-editor"
 import { FC } from "react"
 import { twMerge } from "tailwind-merge"
@@ -12,14 +12,22 @@ type pageProps = {
 }
 
 const Diff: FC<pageProps> = (props) => {
-  const { language, setLanguage, editorTheme } = useEditor()
+  const {
+    editorRef,
+    language,
+    setLanguage,
+    editorTheme,
+    handleEditorDidMount,
+  } = useEditor({ defaultLanguage: "json" })
+
+  const handleFormatClick = () => {
+    editorRef.current?.trigger(null, "editor.action.formatDocument", undefined)
+  }
 
   return (
     <div className={twMerge("h-full flex flex-col gap-6", props.className)}>
-      <div className="mx-auto">
-        <h1 className="text-3xl font-black">Diff it!</h1>
-      </div>
-      <div className="mx-auto">
+      <h1 className="mx-auto text-3xl font-black">Format it!</h1>
+      <div className="mx-auto flex items-center gap-8">
         <Autocomplete
           label="Select a language"
           className="max-w-xs"
@@ -33,20 +41,27 @@ const Diff: FC<pageProps> = (props) => {
             </AutocompleteItem>
           ))}
         </Autocomplete>
+        <Button
+          className="max-w-xs"
+          color="primary"
+          size="lg"
+          onClick={handleFormatClick}
+        >
+          Format
+        </Button>
       </div>
-      <DiffEditor
-        className="flex-1"
+      <Editor
         theme={editorTheme}
-        language={language}
+        defaultLanguage="json"
         options={{
           formatOnType: true,
           formatOnPaste: true,
           minimap: {
             enabled: false,
           },
-          enableSplitViewResizing: true,
-          originalEditable: true,
         }}
+        language={language}
+        onMount={handleEditorDidMount}
       />
     </div>
   )
