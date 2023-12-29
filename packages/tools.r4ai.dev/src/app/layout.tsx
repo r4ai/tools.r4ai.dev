@@ -22,7 +22,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
       <body className={inter.className}>
         <Providers>
           <NavBar />
-          {children}
+          <div style={{ height: "calc(100% - 4rem)" }}>{children}</div>
         </Providers>
       </body>
     </html>
