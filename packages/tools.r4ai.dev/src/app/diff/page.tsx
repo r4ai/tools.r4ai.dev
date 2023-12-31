@@ -2,20 +2,20 @@
 
 import { DiffEditor } from "@monaco-editor/react"
 import { Autocomplete, AutocompleteItem } from "@nextui-org/react"
-import { languages } from "monaco-editor"
 import { FC } from "react"
-import { twMerge } from "tailwind-merge"
 import { useEditor } from "../../../hooks/useEditor"
 
-type pageProps = {
-  className?: string
-}
-
-const Diff: FC<pageProps> = (props) => {
-  const { language, setLanguage, editorTheme } = useEditor()
+const Diff: FC = () => {
+  const {
+    language,
+    setLanguage,
+    editorTheme,
+    availableLanguages,
+    handleEditorBeforeMount,
+  } = useEditor()
 
   return (
-    <div className={twMerge("h-full flex flex-col gap-6", props.className)}>
+    <div className="h-full flex flex-col gap-6">
       <div className="mx-auto">
         <h1 className="text-3xl font-black">Diff it!</h1>
       </div>
@@ -27,9 +27,9 @@ const Diff: FC<pageProps> = (props) => {
           selectedKey={language}
           onSelectionChange={(key) => setLanguage(key as string)}
         >
-          {languages.getLanguages().map((lang) => (
-            <AutocompleteItem key={lang.id} value={lang.id}>
-              {lang.id}
+          {availableLanguages.map((lang) => (
+            <AutocompleteItem key={lang} value={lang}>
+              {lang}
             </AutocompleteItem>
           ))}
         </Autocomplete>
@@ -47,6 +47,7 @@ const Diff: FC<pageProps> = (props) => {
           enableSplitViewResizing: true,
           originalEditable: true,
         }}
+        beforeMount={handleEditorBeforeMount}
       />
     </div>
   )

@@ -1,7 +1,8 @@
 "use client"
 
-import { OnMount } from "@monaco-editor/react"
-import { editor } from "monaco-editor"
+import { BeforeMount, OnMount } from "@monaco-editor/react"
+import { defu } from "defu"
+import * as monaco from "monaco-editor"
 import { useTheme } from "next-themes"
 import { useMemo, useRef, useState } from "react"
 
@@ -13,15 +14,24 @@ const defaultOptions: Required<EditorHookOptions> = {
   defaultLanguage: "plaintext",
 }
 
-export const useEditor = (options: EditorHookOptions = defaultOptions) => {
-  const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null)
+export const useEditor = (_options: EditorHookOptions = defaultOptions) => {
+  const options = defu(_options, defaultOptions)
 
-  const handleEditorDidMount: OnMount = (editor) => {
+  const editorRef = useRef<monaco.editor.IStandaloneCodeEditor | null>(null)
+
+  const handleEditorBeforeMount: BeforeMount = (monaco) => {
+    setAvailableLanguages(monaco.languages.getLanguages().map((l) => l.id))
+  }
+
+  const handleEditorOnMount: OnMount = (editor) => {
     editorRef.current = editor
   }
 
   const { resolvedTheme } = useTheme()
 
+  const [availableLanguages, setAvailableLanguages] = useState<string[]>([
+    options.defaultLanguage,
+  ])
   const [language, setLanguage] = useState(options.defaultLanguage)
 
   const editorTheme = useMemo(
@@ -31,8 +41,10 @@ export const useEditor = (options: EditorHookOptions = defaultOptions) => {
 
   return {
     editorRef,
-    handleEditorDidMount,
+    handleEditorBeforeMount,
+    handleEditorDidMount: handleEditorOnMount,
     editorTheme,
+    availableLanguages,
     language,
     setLanguage,
   }
