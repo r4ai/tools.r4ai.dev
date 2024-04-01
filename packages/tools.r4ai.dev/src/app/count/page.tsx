@@ -19,7 +19,8 @@ const Count: FC = () => {
     [text],
   )
   const charactersCount = useMemo(() => {
-    const lang = navigator?.language ?? "en"
+    const isServer = typeof window === "undefined"
+    const lang = isServer ? "en" : navigator.language
     const segmenter = new Intl.Segmenter(lang, { granularity: "grapheme" })
     const segments = segmenter.segment(text)
     return [...segments].length
