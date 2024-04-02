@@ -30,6 +30,10 @@ export const NavBar = () => {
       label: "Format it!",
       href: "/format",
     },
+    {
+      label: "Count it!",
+      href: "/count",
+    }
   ]
 
   return (
